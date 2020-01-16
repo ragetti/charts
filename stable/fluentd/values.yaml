@@ -127,7 +127,7 @@ configMaps:
     <match **>
       @id elasticsearch
       @type elasticsearch
-      @log_level info
+      @log_level warn
       include_tag_key true
       # Replace with the host/port to your Elasticsearch cluster.
       host "#{ENV['OUTPUT_HOST']}"
@@ -135,7 +135,7 @@ configMaps:
       scheme "#{ENV['OUTPUT_SCHEME']}"
       ssl_version "#{ENV['OUTPUT_SSL_VERSION']}"
       logstash_format true
-      <buffer>
+      <buffer tag,time>
         @type file
         path /var/log/fluentd-buffers/kubernetes.system.buffer
         flush_mode interval
